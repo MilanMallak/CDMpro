@@ -11,59 +11,45 @@ rndm_name = str
 
 rndm_profession = str
 
-opt_profession = {
-opt_profession["Carpente"] =        [11, 11, 0, 0, 0, 0]
-opt_profession["Stonemason"] =      [11, 11, 0, 0, 0, 0]
-opt_profession["Armorer"] =         [14, 12, 0, 0, 0, 0]
-opt_profession["Blacksmith"] =      [14, 11, 0, 0, 0, 0]
-opt_profession["Farmer"] =          [0, 11, 0, 0, 0]
-opt_profession["Fisherman"] =       [10, 0, 10, 0, 0, 0]
-opt_profession["Miller"] =          [12, 0, 10, 0, 0, 0]
-opt_profession["Butcher"] =         [14, 0, 0, 0, 0, 0]
-opt_profession["Baker"] =           [0, 0, 0, 0, 10, 0]
-opt_profession["Cook"] =            [0, 14, 14, 0, 10, 0
-opt_profession["Beerbrewer"] =      [0, 0, 0, 0, 0, 0]
-opt_profession["Innkeeper"] =       [0, 0, 0, 0, 0, 10]
-opt_profession["Apothecary"] =      [0, 0, 0, 12, 13, 0]
-opt_profession["Barber surgeon"] =  [0, 0, 0, 14, 14, 0]
-opt_profession["Shoemaker"] =       [0, 14, 0, 0, 0, 0]
-opt_profession["Tailor"] =          [0, 14, 0, 0, 0, 0]
-opt_profession["Architect"] =       [0, 0, 0, 14, 0, 0]
-opt_profession["Clerk"] =           [0, 0, 0, 11, 0, 0]
-opt_profession["Merchant"] =        [0, 0, 0, 12, 0, 14]
-opt_profession["Bailiff"] =         [14, 0, 0, 0, 12, 0]
-opt_profession["Alchemist"] =       [0, 0, 0, 14, 16, 0]
-opt_profession["Astronomer"] =      [0, 0, 0, 16, 14, 0]
-opt_profession["Candlemaker"] =     [0, 0, 0, 0, 0, 0]
-opt_profession["Scribe"] =          [0, 12, 0, 0, 13, 0]
+opt_profession = {[11, 11, 0, 0, 0, 0], [11, 11, 0, 0, 0, 0], [14, 12, 0, 0, 0, 0], [14, 11, 0, 0, 0, 0], [0, 0, 11, 0, 0, 0], [10, 0, 10, 0, 0, 0], [12, 0, 10, 0, 0, 0], [14, 0, 0, 0, 0, 0],
+                  [0, 0, 0, 0, 10, 0], [0, 14, 14, 0, 10, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 10], [0, 0, 0, 12, 13, 0], [0, 0, 0, 14, 14, 0], [0, 14, 0, 0, 0, 0], [0, 14, 0, 0, 0, 0],
+                  [0, 0, 0, 14, 0, 0], [0, 0, 0, 11, 0, 0], [0, 0, 0, 12, 0, 14], [14, 0, 0, 0, 12, 0], [0, 0, 0, 14, 16, 0], [0, 0, 0, 16, 14, 0], [0, 0, 0, 0, 0, 0], [0, 12, 0, 0, 13, 0]}
 
-opt_profession = {}                                         #    strg, dex, con, intel, wis, cha
-opt_profession["Carpente"] =        [11, 11, 0, 0, 0, 0]    #    11,    11,   0,     0,   0,   0
-opt_profession["Stonemason"] =      [11, 11, 0, 0, 0, 0]    #    11,    11,   0,     0,   0,   0
-opt_profession["Armorer"] =         [14, 12, 0, 0, 0, 0]    #    14,    12,   0,     0,   0,   0
-opt_profession["Blacksmith"] =      [14, 11, 0, 0, 0, 0]    #    14,    11,   0,     0,   0,   0
-opt_profession["Farmer"] =          [0, 11, 0, 0, 0]        #    11,     0,  11,     0,   0,   0
-opt_profession["Fisherman"] =       [10, 0, 10, 0, 0, 0]    #    10,     0,  10,     0,   0,   0
-opt_profession["Miller"] =          [12, 0, 10, 0, 0, 0]    #    12,     0,  10,     0,   0,   0
-opt_profession["Butcher"] =         [14, 0, 0, 0, 0, 0]     #    14,     0,   0,     0,   0,   0
-opt_profession["Baker"] =           [0, 0, 0, 0, 10, 0]     #     0,     0,   0,     0,  10,   0
-opt_profession["Cook"] =            [0, 14, 14, 0, 10, 0]   #     0,    14,  14,     0,  10,   0
-opt_profession["Beerbrewer"] =      [0, 0, 0, 0, 0, 0]      #     0,     0,   0,     0,   0,   0
-opt_profession["Innkeeper"] =       [0, 0, 0, 0, 0, 10]     #     0,     0,   0,     0,   0,  10
-opt_profession["Apothecary"] =      [0, 0, 0, 12, 13, 0]    #     0,     0,   0,    12,  13,   0
-opt_profession["Barber surgeon"] =  [0, 0, 0, 14, 14, 0]    #     0,     0,   0,    14,  14,   0
-opt_profession["Shoemaker"] =       [0, 14, 0, 0, 0, 0]     #     0,    14,   0,     0,   0,   0
-opt_profession["Tailor"] =          [0, 14, 0, 0, 0, 0]     #     0,    14,   0,     0,   0,   0
-opt_profession["Architect"] =       [0, 0, 0, 14, 0, 0]     #     0,     0,   0,    14,   0,   0
-opt_profession["Clerk"] =           [0, 0, 0, 11, 0, 0]     #     0,     0,   0,    11,   0,   0
-opt_profession["Merchant"] =        [0, 0, 0, 12, 0, 14]    #     0,     0,   0,    12,   0,  14
-opt_profession["Bailiff"] =         [14, 0, 0, 0, 12, 0]    #    14,     0,   0,     0,  12,   0
-opt_profession["Alchemist"] =       [0, 0, 0, 14, 16, 0]    #     0,     0,   0,    14,  16,   0
-opt_profession["Astronomer"] =      [0, 0, 0, 16, 14, 0]    #     0,     0,   0,    16,  14,   0
-opt_profession["Candlemaker"] =     [0, 0, 0, 0, 0, 0]      #     0,     0,   0,     0,   0,   0
-opt_profession["Scribe"] =          [0, 12, 0, 0, 13, 0]    #     0,    12,   0,     0,  13,   0
+# opt_profession = {}                                         #    strg, dex, con, intel, wis, cha
+# opt_profession["Carpenter"] =       [11, 11, 0, 0, 0, 0]    #    11,    11,   0,     0,   0,   0
+# opt_profession["Stonemason"] =      [11, 11, 0, 0, 0, 0]    #    11,    11,   0,     0,   0,   0
+# opt_profession["Armorer"] =         [14, 12, 0, 0, 0, 0]    #    14,    12,   0,     0,   0,   0
+# opt_profession["Blacksmith"] =      [14, 11, 0, 0, 0, 0]    #    14,    11,   0,     0,   0,   0
+# opt_profession["Farmer"] =          [0, 0, 11, 0, 0, 0]     #    11,     0,  11,     0,   0,   0
+# opt_profession["Fisherman"] =       [10, 0, 10, 0, 0, 0]    #    10,     0,  10,     0,   0,   0
+# opt_profession["Miller"] =          [12, 0, 10, 0, 0, 0]    #    12,     0,  10,     0,   0,   0
+# opt_profession["Butcher"] =         [14, 0, 0, 0, 0, 0]     #    14,     0,   0,     0,   0,   0
+# opt_profession["Baker"] =           [0, 0, 0, 0, 10, 0]     #     0,     0,   0,     0,  10,   0
+# opt_profession["Cook"] =            [0, 14, 14, 0, 10, 0]   #     0,    14,  14,     0,  10,   0
+# opt_profession["Beerbrewer"] =      [0, 0, 0, 0, 0, 0]      #     0,     0,   0,     0,   0,   0
+# opt_profession["Innkeeper"] =       [0, 0, 0, 0, 0, 10]     #     0,     0,   0,     0,   0,  10
+# opt_profession["Apothecary"] =      [0, 0, 0, 12, 13, 0]    #     0,     0,   0,    12,  13,   0
+# opt_profession["Barber surgeon"] =  [0, 0, 0, 14, 14, 0]    #     0,     0,   0,    14,  14,   0
+# opt_profession["Shoemaker"] =       [0, 14, 0, 0, 0, 0]     #     0,    14,   0,     0,   0,   0
+# opt_profession["Tailor"] =          [0, 14, 0, 0, 0, 0]     #     0,    14,   0,     0,   0,   0
+# opt_profession["Architect"] =       [0, 0, 0, 14, 0, 0]     #     0,     0,   0,    14,   0,   0
+# opt_profession["Clerk"] =           [0, 0, 0, 11, 0, 0]     #     0,     0,   0,    11,   0,   0
+# opt_profession["Merchant"] =        [0, 0, 0, 12, 0, 14]    #     0,     0,   0,    12,   0,  14
+# opt_profession["Bailiff"] =         [14, 0, 0, 0, 12, 0]    #    14,     0,   0,     0,  12,   0
+# opt_profession["Alchemist"] =       [0, 0, 0, 14, 16, 0]    #     0,     0,   0,    14,  16,   0
+# opt_profession["Astronomer"] =      [0, 0, 0, 16, 14, 0]    #     0,     0,   0,    16,  14,   0
+# opt_profession["Candlemaker"] =     [0, 0, 0, 0, 0, 0]      #     0,     0,   0,     0,   0,   0
+# opt_profession["Scribe"] =          [0, 12, 0, 0, 13, 0]    #     0,    12,   0,     0,  13,   0
 
 def ctrl_rndm_profession():
+#    loser = False
+#    count = 0
+#    for stat in [11, 11, 0, 0, 0, 0]:
+#        count += 1
+#        if stats[count] < stat:
+#            loser  =True
+#            break
+
 
 
 
