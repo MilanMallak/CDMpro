@@ -3,6 +3,7 @@
 
 import random
 import names
+import numpy
 
 valeur = int
 opt_genre = ["male", "female"]
