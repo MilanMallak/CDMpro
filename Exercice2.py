@@ -3,7 +3,7 @@
 
 import random
 import names
-import numpy
+import numpy as np
 
 valeur = int
 opt_genre = ["male", "female"]
@@ -12,35 +12,35 @@ rndm_name = str
 
 rndm_profession = str
 
-opt_profession = {[11, 11, 0, 0, 0, 0], [11, 11, 0, 0, 0, 0], [14, 12, 0, 0, 0, 0], [14, 11, 0, 0, 0, 0], [0, 0, 11, 0, 0, 0], [10, 0, 10, 0, 0, 0], [12, 0, 10, 0, 0, 0], [14, 0, 0, 0, 0, 0],
-                  [0, 0, 0, 0, 10, 0], [0, 14, 14, 0, 10, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 10], [0, 0, 0, 12, 13, 0], [0, 0, 0, 14, 14, 0], [0, 14, 0, 0, 0, 0], [0, 14, 0, 0, 0, 0],
-                  [0, 0, 0, 14, 0, 0], [0, 0, 0, 11, 0, 0], [0, 0, 0, 12, 0, 14], [14, 0, 0, 0, 12, 0], [0, 0, 0, 14, 16, 0], [0, 0, 0, 16, 14, 0], [0, 0, 0, 0, 0, 0], [0, 12, 0, 0, 13, 0]}
+#opt_profession = {[11, 11, 0, 0, 0, 0], [11, 11, 0, 0, 0, 0], [14, 12, 0, 0, 0, 0], [14, 11, 0, 0, 0, 0], [0, 0, 11, 0, 0, 0], [10, 0, 10, 0, 0, 0], [12, 0, 10, 0, 0, 0], [14, 0, 0, 0, 0, 0],
+#                  [0, 0, 0, 0, 10, 0], [0, 14, 14, 0, 10, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 10], [0, 0, 0, 12, 13, 0], [0, 0, 0, 14, 14, 0], [0, 14, 0, 0, 0, 0], [0, 14, 0, 0, 0, 0],
+#                  [0, 0, 0, 14, 0, 0], [0, 0, 0, 11, 0, 0], [0, 0, 0, 12, 0, 14], [14, 0, 0, 0, 12, 0], [0, 0, 0, 14, 16, 0], [0, 0, 0, 16, 14, 0], [0, 0, 0, 0, 0, 0], [0, 12, 0, 0, 13, 0]}
 
-# opt_profession = {}                                         #    strg, dex, con, intel, wis, cha
-# opt_profession["Carpenter"] =       [11, 11, 0, 0, 0, 0]    #    11,    11,   0,     0,   0,   0
-# opt_profession["Stonemason"] =      [11, 11, 0, 0, 0, 0]    #    11,    11,   0,     0,   0,   0
-# opt_profession["Armorer"] =         [14, 12, 0, 0, 0, 0]    #    14,    12,   0,     0,   0,   0
-# opt_profession["Blacksmith"] =      [14, 11, 0, 0, 0, 0]    #    14,    11,   0,     0,   0,   0
-# opt_profession["Farmer"] =          [0, 0, 11, 0, 0, 0]     #    11,     0,  11,     0,   0,   0
-# opt_profession["Fisherman"] =       [10, 0, 10, 0, 0, 0]    #    10,     0,  10,     0,   0,   0
-# opt_profession["Miller"] =          [12, 0, 10, 0, 0, 0]    #    12,     0,  10,     0,   0,   0
-# opt_profession["Butcher"] =         [14, 0, 0, 0, 0, 0]     #    14,     0,   0,     0,   0,   0
-# opt_profession["Baker"] =           [0, 0, 0, 0, 10, 0]     #     0,     0,   0,     0,  10,   0
-# opt_profession["Cook"] =            [0, 14, 14, 0, 10, 0]   #     0,    14,  14,     0,  10,   0
-# opt_profession["Beerbrewer"] =      [0, 0, 0, 0, 0, 0]      #     0,     0,   0,     0,   0,   0
-# opt_profession["Innkeeper"] =       [0, 0, 0, 0, 0, 10]     #     0,     0,   0,     0,   0,  10
-# opt_profession["Apothecary"] =      [0, 0, 0, 12, 13, 0]    #     0,     0,   0,    12,  13,   0
-# opt_profession["Barber surgeon"] =  [0, 0, 0, 14, 14, 0]    #     0,     0,   0,    14,  14,   0
-# opt_profession["Shoemaker"] =       [0, 14, 0, 0, 0, 0]     #     0,    14,   0,     0,   0,   0
-# opt_profession["Tailor"] =          [0, 14, 0, 0, 0, 0]     #     0,    14,   0,     0,   0,   0
-# opt_profession["Architect"] =       [0, 0, 0, 14, 0, 0]     #     0,     0,   0,    14,   0,   0
-# opt_profession["Clerk"] =           [0, 0, 0, 11, 0, 0]     #     0,     0,   0,    11,   0,   0
-# opt_profession["Merchant"] =        [0, 0, 0, 12, 0, 14]    #     0,     0,   0,    12,   0,  14
-# opt_profession["Bailiff"] =         [14, 0, 0, 0, 12, 0]    #    14,     0,   0,     0,  12,   0
-# opt_profession["Alchemist"] =       [0, 0, 0, 14, 16, 0]    #     0,     0,   0,    14,  16,   0
-# opt_profession["Astronomer"] =      [0, 0, 0, 16, 14, 0]    #     0,     0,   0,    16,  14,   0
-# opt_profession["Candlemaker"] =     [0, 0, 0, 0, 0, 0]      #     0,     0,   0,     0,   0,   0
-# opt_profession["Scribe"] =          [0, 12, 0, 0, 13, 0]    #     0,    12,   0,     0,  13,   0
+# opt_profession = {}                               #    strg, dex, con, intel, wis, cha
+Carpenter = np.array([11, 11, 0, 0, 0, 0])          #      11,    11,   0,     0,   0,   0
+Stonemason = np.array([11, 11, 0, 0, 0, 0])         #      11,    11,   0,     0,   0,   0
+Armorer = np.array([14, 12, 0, 0, 0, 0])            #      14,    12,   0,     0,   0,   0
+Blacksmith = np.array([14, 11, 0, 0, 0, 0])         #      14,    11,   0,     0,   0,   0
+Farmer = np.array([0, 0, 11, 0, 0, 0])              #      11,     0,  11,     0,   0,   0
+Fisherman = np.array([10, 0, 10, 0, 0, 0])          #      10,     0,  10,     0,   0,   0
+Miller = np.array([12, 0, 10, 0, 0, 0])             #      12,     0,  10,     0,   0,   0
+Butcher = np.array([14, 0, 0, 0, 0, 0])             #      14,     0,   0,     0,   0,   0
+Baker = np.array([0, 0, 0, 0, 10, 0])               #       0,     0,   0,     0,  10,   0
+Cook = np.array([0, 14, 14, 0, 10, 0])              #       0,    14,  14,     0,  10,   0
+Beerbrewer = np.array([0, 0, 0, 0, 0, 0])           #       0,     0,   0,     0,   0,   0
+Innkeeper = np.array([0, 0, 0, 0, 0, 10])           #       0,     0,   0,     0,   0,  10
+Apothecary = np.array([0, 0, 0, 12, 13, 0])         #       0,     0,   0,    12,  13,   0
+Barber_surgeon = np.array([0, 0, 0, 14, 14, 0])     #       0,     0,   0,    14,  14,   0
+Shoemaker = np.array([0, 14, 0, 0, 0, 0])           #       0,    14,   0,     0,   0,   0
+Tailor = np.array([0, 14, 0, 0, 0, 0])              #       0,    14,   0,     0,   0,   0
+Architect = np.array([0, 0, 0, 14, 0, 0])           #       0,     0,   0,    14,   0,   0
+Clerk = np.array([0, 0, 0, 11, 0, 0])               #       0,     0,   0,    11,   0,   0
+Merchant = np.array([0, 0, 0, 12, 0, 14])           #       0,     0,   0,    12,   0,  14
+Bailiff = np.array([14, 0, 0, 0, 12, 0])            #      14,     0,   0,     0,  12,   0
+Alchemist = np.array([0, 0, 0, 14, 16, 0])          #       0,     0,   0,    14,  16,   0
+Astronomer = np.array([0, 0, 0, 16, 14, 0])         #       0,     0,   0,    16,  14,   0
+Candlemaker = np.array([0, 0, 0, 0, 0, 0])          #       0,     0,   0,     0,   0,   0
+Scribe = np.array([0, 12, 0, 0, 13, 0])             #       0,    12,   0,     0,  13,   0
 
 def ctrl_rndm_profession():
 #    loser = False
