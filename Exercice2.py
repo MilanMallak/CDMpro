@@ -12,11 +12,8 @@ rndm_name = str
 
 rndm_profession = str
 
-#opt_profession = {[11, 11, 0, 0, 0, 0], [11, 11, 0, 0, 0, 0], [14, 12, 0, 0, 0, 0], [14, 11, 0, 0, 0, 0], [0, 0, 11, 0, 0, 0], [10, 0, 10, 0, 0, 0], [12, 0, 10, 0, 0, 0], [14, 0, 0, 0, 0, 0],
-#                  [0, 0, 0, 0, 10, 0], [0, 14, 14, 0, 10, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 10], [0, 0, 0, 12, 13, 0], [0, 0, 0, 14, 14, 0], [0, 14, 0, 0, 0, 0], [0, 14, 0, 0, 0, 0],
-#                  [0, 0, 0, 14, 0, 0], [0, 0, 0, 11, 0, 0], [0, 0, 0, 12, 0, 14], [14, 0, 0, 0, 12, 0], [0, 0, 0, 14, 16, 0], [0, 0, 0, 16, 14, 0], [0, 0, 0, 0, 0, 0], [0, 12, 0, 0, 13, 0]}
 
-# opt_profession = {}                               #    strg, dex, con, intel, wis, cha
+#                                                   #    strg, dex, con, intel, wis, cha
 Carpenter = np.array([11, 11, 0, 0, 0, 0])          #      11,    11,   0,     0,   0,   0
 Stonemason = np.array([11, 11, 0, 0, 0, 0])         #      11,    11,   0,     0,   0,   0
 Armorer = np.array([14, 12, 0, 0, 0, 0])            #      14,    12,   0,     0,   0,   0
@@ -42,16 +39,16 @@ Astronomer = np.array([0, 0, 0, 16, 14, 0])         #       0,     0,   0,    16
 Candlemaker = np.array([0, 0, 0, 0, 0, 0])          #       0,     0,   0,     0,   0,   0
 Scribe = np.array([0, 12, 0, 0, 13, 0])             #       0,    12,   0,     0,  13,   0
 
+opt_profession = [Carpenter, Stonemason, Armorer, Blacksmith, Farmer, Fisherman, Miller, Butcher, Baker, Cook, Beerbrewer, Innkeeper, Apothecary, Barber_surgeon, Shoemaker, Tailor, Architect, Clerk, Merchant, Bailiff, Alchemist, Astronomer, Candlemaker, Scribe]
+ctrl_opt_profession = []
+prof_count = int
+
 def ctrl_rndm_profession():
-#    loser = False
-#    count = 0
-#    for stat in [11, 11, 0, 0, 0, 0]:
-#        count += 1
-#        if stats[count] < stat:
-#            loser  =True
-#            break
-
-
+    prof_count = 0
+    while prof_count < 21 :
+        if (stats >= opt_profession[prof_count]).any() :
+            ctrl_opt_profession.append(opt_profession[prof_count])
+        prof_count =+ 1
 
 
 
@@ -111,3 +108,8 @@ NPC.cha = valeur
 NPC.nom = rndm_caracteristics()
 
 print(NPC.strg, NPC.dex, NPC.con, NPC.intel, NPC.wis, NPC.cha, NPC.nom)
+
+stats = np.array([NPC.strg, NPC.dex, NPC.con, NPC.intel, NPC.wis, NPC.cha])
+
+ctrl_rndm_profession()
+print(ctrl_opt_profession)
