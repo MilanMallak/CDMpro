@@ -44,11 +44,13 @@ ctrl_opt_profession = []
 prof_count = int
 
 def ctrl_rndm_profession():
-    prof_count = 0
-    while prof_count < 21 :
-        if (stats >= opt_profession[prof_count]).any() :
-            ctrl_opt_profession.append(opt_profession[prof_count])
-        prof_count =+ 1
+    global rndm_profession
+
+    for i in opt_profession:
+        if (stats >= i).all():
+            ctrl_opt_profession.append(i)
+
+
 
 
 
