@@ -195,3 +195,4 @@ rndmz_species()
 
 npc = NPC(strg, dex, con, intel, wis, cha, rndmz_name(), rndmz_species(), rndmz_ethnicity(), ctrl_rndmz_profession())
 npc.details()
+#push test
