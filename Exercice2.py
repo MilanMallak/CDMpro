@@ -8,51 +8,75 @@ import numpy as np
 valeur = int
 opt_genre = ["male", "female"]
 genre = str
+opt_species = ["Human", "Elf", "Dwarf", "Kobold"]
+species = str
 rndm_name = str
-
 rndm_profession = str
 
 
 #                                                   #    strg, dex, con, intel, wis, cha
-Carpenter = np.array([11, 11, 0, 0, 0, 0])          #      11,    11,   0,     0,   0,   0
-Stonemason = np.array([11, 11, 0, 0, 0, 0])         #      11,    11,   0,     0,   0,   0
+Carpenter = np.array([10, 11, 0, 0, 0, 0])          #      10,    11,   0,     0,   0,   0
+Stonemason = np.array([11, 10, 0, 0, 0, 0])         #      11,    10,   0,     0,   0,   0
 Armorer = np.array([14, 12, 0, 0, 0, 0])            #      14,    12,   0,     0,   0,   0
 Blacksmith = np.array([14, 11, 0, 0, 0, 0])         #      14,    11,   0,     0,   0,   0
-Farmer = np.array([0, 0, 11, 0, 0, 0])              #      11,     0,  11,     0,   0,   0
+Farmer = np.array([11, 0, 11, 0, 0, 0])              #      11,     0,  11,     0,   0,   0
 Fisherman = np.array([10, 0, 10, 0, 0, 0])          #      10,     0,  10,     0,   0,   0
 Miller = np.array([12, 0, 10, 0, 0, 0])             #      12,     0,  10,     0,   0,   0
 Butcher = np.array([14, 0, 0, 0, 0, 0])             #      14,     0,   0,     0,   0,   0
 Baker = np.array([0, 0, 0, 0, 10, 0])               #       0,     0,   0,     0,  10,   0
 Cook = np.array([0, 14, 14, 0, 10, 0])              #       0,    14,  14,     0,  10,   0
-Beerbrewer = np.array([0, 0, 0, 0, 0, 0])           #       0,     0,   0,     0,   0,   0
+Beerbrewer = np.array([1, 0, 0, 0, 0, 0])           #       1,     0,   0,     0,   0,   0
 Innkeeper = np.array([0, 0, 0, 0, 0, 10])           #       0,     0,   0,     0,   0,  10
 Apothecary = np.array([0, 0, 0, 12, 13, 0])         #       0,     0,   0,    12,  13,   0
 Barber_surgeon = np.array([0, 0, 0, 14, 14, 0])     #       0,     0,   0,    14,  14,   0
-Shoemaker = np.array([0, 14, 0, 0, 0, 0])           #       0,    14,   0,     0,   0,   0
-Tailor = np.array([0, 14, 0, 0, 0, 0])              #       0,    14,   0,     0,   0,   0
+Shoemaker = np.array([0, 14, 0, 0, 1, 0])           #       0,    14,   0,     0,   1,   0
+Tailor = np.array([0, 14, 0, 1, 0, 0])              #       0,    14,   0,     1,   0,   0
 Architect = np.array([0, 0, 0, 14, 0, 0])           #       0,     0,   0,    14,   0,   0
 Clerk = np.array([0, 0, 0, 11, 0, 0])               #       0,     0,   0,    11,   0,   0
 Merchant = np.array([0, 0, 0, 12, 0, 14])           #       0,     0,   0,    12,   0,  14
 Bailiff = np.array([14, 0, 0, 0, 12, 0])            #      14,     0,   0,     0,  12,   0
 Alchemist = np.array([0, 0, 0, 14, 16, 0])          #       0,     0,   0,    14,  16,   0
 Astronomer = np.array([0, 0, 0, 16, 14, 0])         #       0,     0,   0,    16,  14,   0
-Candlemaker = np.array([0, 0, 0, 0, 0, 0])          #       0,     0,   0,     0,   0,   0
+Candlemaker = np.array([0, 0, 0, 0, 1, 0])          #       0,     0,   0,     0,   1,   0
 Scribe = np.array([0, 12, 0, 0, 13, 0])             #       0,    12,   0,     0,  13,   0
+
+#Monster "professions"
+Melee_fighter = np.array([10, 0, 0, 0, 0, 0])
+Ranged_fighter = np.array([0, 10, 0, 0, 0, 0])
+
+
+profession_dict = {
+"[10 11  0  0  0  0]" : "Carpenter",
+"[11 10  0  0  0  0]" : "Stonemason",
+"[14 12  0  0  0  0]" : "Armorer",
+"[14 11  0  0  0  0]" : "Blacksmith",
+"[11  0 11  0  0  0]" : "Farmer",
+"[10  0 10  0  0  0]" : "Fisherman",
+"[12  0 10  0  0  0]" : "Miller",
+"[14  0  0  0  0  0]" : "Butcher",
+"[ 0  0  0  0 10  0]" : "Baker",
+"[ 0 14 14  0 10  0]" : "Cook",
+"[1 0 0 0 0 0]" : "Beerbrewer",
+"[ 0  0  0  0  0 10]" : "Innkeeper",
+"[ 0  0  0 12 13  0]" : "Apothecary",
+"[ 0  0  0 14 14  0]" : "Barber surgeon",
+"[ 0 14  0  0  1  0]" : "Shoemaker" ,
+"[ 0 14  0  1  0  0]" : "Tailor",
+"[ 0  0  0 14  0  0]" : "Architect",
+"[ 0  0  0 11  0  0]" : "Clerk",
+"[ 0  0  0 12  0 14]" : "Merchant",
+"[14  0  0  0 12  0]" : "Bailiff",
+"[ 0  0  0 14 16  0]" : "Alchemist",
+"[ 0  0  0 16 14  0]" : "Astronomer",
+"[0 0 0 0 1 0]" : "Candlemaker",
+"[ 0 12  0  0 13  0]" : "Scribe",
+#Monster "professions"
+"[10  0  0  0  0  0]" : "Melee fighter",
+"[ 0 10  0  0  0  0]" : "Ranged fighter"
+}
 
 opt_profession = [Carpenter, Stonemason, Armorer, Blacksmith, Farmer, Fisherman, Miller, Butcher, Baker, Cook, Beerbrewer, Innkeeper, Apothecary, Barber_surgeon, Shoemaker, Tailor, Architect, Clerk, Merchant, Bailiff, Alchemist, Astronomer, Candlemaker, Scribe]
 ctrl_opt_profession = []
-prof_count = int
-
-def ctrl_rndm_profession():
-    global rndm_profession
-
-    for i in opt_profession:
-        if (stats >= i).all():
-            ctrl_opt_profession.append(i)
-
-
-
-
 
 def rndm_attribut():
     global valeur
@@ -62,7 +86,7 @@ def rndm_attribut():
     ld.sort(reverse = True)
     valeur = ld[0] + ld[1] + ld[2] # les trois meilleurs
 
-def rndm_caracteristics():
+def rndmz_name():
     global rndm_name
 
     if genre == "male" :
@@ -74,8 +98,33 @@ def rndm_caracteristics():
     rndm_name = rndm_first_name + " " + rndm_last_name
     return rndm_name
 
+def rndmz_species():
+    global rndm_species
+    rndm_species= random.choice(opt_species)
+    return rndm_species
+
+def ctrl_rndmz_profession():
+    global rndm_profession
+    global rndm_profession_code
+    global rndm_species
+    if rndm_species in ("Human", "Elf", "Dwarf"):
+        for i in opt_profession:
+            if (stats >= i).all():
+                ctrl_opt_profession.append(i)
+    else: #for monsters
+        if (stats >= Melee_fighter).all():
+            ctrl_opt_profession.append(Melee_fighter)
+        elif (stats >= Ranged_fighter).all():
+            ctrl_opt_profession.append(Ranged_fighter)
+        else:
+            rndm_profession = ("Grunt")
+
+    rndm_profession_code = str(random.choice(ctrl_opt_profession))
+    rndm_profession = (profession_dict.get(rndm_profession_code))
+    return rndm_profession
+
 class NPC :
-    def __init__(self, strg, dex, con, intel, wis, cha, nom):
+    def __init__(self, strg, dex, con, intel, wis, cha, nom, species, profession):
         self.strg = strg
         self.dex = dex
         self.con = con
@@ -89,29 +138,39 @@ class NPC :
         self.genre = random.choice(opt_genre)
         self.nom = nom
 
-        #self.species = placeholder
+        self.species = species
         #self.ethnicity = placeholder
 
-        #self.profession = placeholder
+        self.profession = profession
+
+    def details(self):
+        print(
+            f"Name: {self.nom}\n"
+            f"Species: {self.species}\n"
+            f"Profession: {self.profession}\n"
+            f"Genre: {self.genre}\n"
+            f"HP: {self.HP} | AC: {self.ac}\n"
+            f"STR: {self.strg} DEX: {self.dex} CON: {self.con}\n"
+            f"INT: {self.intel} WIS: {self.wis} CHA: {self.cha}"
+        )
+
 
 rndm_attribut()
-NPC.strg = valeur
+strg = valeur
 rndm_attribut()
-NPC.dex = valeur
+dex = valeur
 rndm_attribut()
-NPC.con = valeur
+con = valeur
 rndm_attribut()
-NPC.intel = valeur
+intel = valeur
 rndm_attribut()
-NPC.wis = valeur
+wis = valeur
 rndm_attribut()
-NPC.cha = valeur
+cha = valeur
 
-NPC.nom = rndm_caracteristics()
+stats = np.array([strg, dex, con, intel, wis, cha])
 
-print(NPC.strg, NPC.dex, NPC.con, NPC.intel, NPC.wis, NPC.cha, NPC.nom)
+rndmz_species()
 
-stats = np.array([NPC.strg, NPC.dex, NPC.con, NPC.intel, NPC.wis, NPC.cha])
-
-ctrl_rndm_profession()
-print(ctrl_opt_profession)
+npc = NPC(strg, dex, con, intel, wis, cha, rndmz_name(), rndmz_species(), ctrl_rndmz_profession())
+npc.details()
