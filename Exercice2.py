@@ -14,6 +14,8 @@ opt_ethnicity = ["Caucasian", "Asian"]
 ethnicity = str
 rndm_name = str
 rndm_profession = str
+hitD = int
+dmg = int
 
 
 #                                                   #    strg, dex, con, intel, wis, cha
@@ -166,7 +168,17 @@ class NPC :
 
 class Hero(NPC) :
     def attack(self):
-        pass
+        global hitD
+        global crit
+        global nat1
+        hitD = random.randint(1, 20)
+        if hitD == 20 :
+            crit = True
+        elif hitD == 1 :
+            nat1 = True
+        else :
+            crit = False
+            nat1 = False
     def hit(self):
         pass
 
@@ -193,6 +205,5 @@ stats = np.array([strg, dex, con, intel, wis, cha])
 
 rndmz_species()
 
-npc = NPC(strg, dex, con, intel, wis, cha, rndmz_name(), rndmz_species(), rndmz_ethnicity(), ctrl_rndmz_profession())
-npc.details()
-#push test
+hero = Hero(strg, dex, con, intel, wis, cha, rndmz_name(), rndmz_species(), rndmz_ethnicity(), ctrl_rndmz_profession())
+hero.details()
