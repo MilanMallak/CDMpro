@@ -8,7 +8,7 @@ import numpy as np
 valeur = int
 opt_genre = ["male", "female"]
 genre = str
-opt_species = ["Human", "Elf", "Dwarf", "Kobold"]
+opt_species = ["Human", "Elf", "Dwarf"]
 species = str
 opt_ethnicity = ["Caucasian", "Asian"]
 ethnicity = str
@@ -89,6 +89,7 @@ def rndm_attribut():
         ld.append(random.randint(1, 6)) # lancé de dés 6
     ld.sort(reverse = True)
     valeur = ld[0] + ld[1] + ld[2] # les trois meilleurs
+    return valeur
 
 def rndmz_name():
     global rndm_name
@@ -119,6 +120,7 @@ def ctrl_rndmz_profession():
     global rndm_profession
     global rndm_profession_code
     global rndm_species
+    ctrl_opt_profession = []
     if rndm_species in ("Human", "Elf", "Dwarf"):
         for i in opt_profession:
             if (stats >= i).all():
@@ -170,15 +172,15 @@ class Hero(NPC) :
     def attack(self):
         global hitD
         global crit
-        global nat1
         hitD = random.randint(1, 20)
         if hitD == 20 :
             crit = True
+            kobold.hit()
         elif hitD == 1 :
-            nat1 = True
+            crit = False
         else :
             crit = False
-            nat1 = False
+            kobold.hit()
     def hit(self):
         pass
 
@@ -186,24 +188,58 @@ class Kobold(NPC) :
     def attack(self):
         pass
     def hit(self):
-        pass
+        global hitD
+        global hitIndicater
+        global crit
+        global dmg
+        dmg = 0
+        if crit == True :
+            dmg = random.randint(1,8)
+            self.HP -= dmg
+        elif 1 < hitD <= 19 :
+            if hitD >= kobold.AC :
+                hitIndicater = True
+                dmg = random.randint(1, 6)
+                self.HP -= dmg
+        else :
+            hitIndicater = False
 
-rndm_attribut()
-strg = valeur
-rndm_attribut()
-dex = valeur
-rndm_attribut()
-con = valeur
-rndm_attribut()
-intel = valeur
-rndm_attribut()
-wis = valeur
-rndm_attribut()
-cha = valeur
+
+strg = rndm_attribut()
+dex = rndm_attribut()
+con = rndm_attribut()
+intel = rndm_attribut()
+wis = rndm_attribut()
+cha = rndm_attribut()
 
 stats = np.array([strg, dex, con, intel, wis, cha])
 
-rndmz_species()
-
 hero = Hero(strg, dex, con, intel, wis, cha, rndmz_name(), rndmz_species(), rndmz_ethnicity(), ctrl_rndmz_profession())
 hero.details()
+
+
+strg = rndm_attribut()
+dex = rndm_attribut()
+con = rndm_attribut()
+intel = rndm_attribut()
+wis = rndm_attribut()
+cha = rndm_attribut()
+
+stats = np.array([strg, dex, con, intel, wis, cha])
+
+rndm_species = "Kobold"
+kobold = Kobold(strg, dex, con, intel, wis, cha, "N/A", "Kobold", rndmz_ethnicity(), ctrl_rndmz_profession())
+kobold.details()
+
+
+input("Paisez ENTER pour commencé le combats")
+print(f"{hero.nom} attack le Kobold")
+hero.attack()
+if crit == True :
+    print(f"le Kobold se prend un coup critique et perd {dmg} point de vie. Il lui reste maintenant {kobold.HP}HP")
+elif hitIndicater == True :
+    print(f"le Kobold se prend un coup et perd {dmg} point de vie. Il lui reste maintenant {kobold.HP}HP")
+else :
+    print(f"l'attaque manque le Kobold")
+print(f"c'est maintenant le tour du Kobold"
+      f"Le Kobold attack {hero.nom}")
