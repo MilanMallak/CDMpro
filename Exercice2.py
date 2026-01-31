@@ -7,7 +7,7 @@ import numpy as np
 
 valeur = int
 opt_genre = ["male", "female"]
-genre = str
+genre = random.choice(opt_genre)
 opt_species = ["Human", "Elf", "Dwarf"]
 species = str
 opt_ethnicity = ["Caucasian", "Asian"]
@@ -47,6 +47,7 @@ Scribe = np.array([0, 12, 0, 0, 13, 0])             #       0,    12,   0,     0
 #Monster "professions"
 Melee_fighter = np.array([10, 0, 0, 0, 0, 0])
 Ranged_fighter = np.array([0, 10, 0, 0, 0, 0])
+Grunt = np.array([0, 0, 0, 0, 0, 0])
 
 
 profession_dict = {
@@ -76,7 +77,8 @@ profession_dict = {
 "[ 0 12  0  0 13  0]" : "Scribe",
 #Monster "professions"
 "[10  0  0  0  0  0]" : "Melee fighter",
-"[ 0 10  0  0  0  0]" : "Ranged fighter"
+"[ 0 10  0  0  0  0]" : "Ranged fighter",
+"[0 0 0 0 0 0]" : "Grunt"
 }
 
 opt_profession = [Carpenter, Stonemason, Armorer, Blacksmith, Farmer, Fisherman, Miller, Butcher, Baker, Cook, Beerbrewer, Innkeeper, Apothecary, Barber_surgeon, Shoemaker, Tailor, Architect, Clerk, Merchant, Bailiff, Alchemist, Astronomer, Candlemaker, Scribe]
@@ -96,8 +98,8 @@ def rndmz_name():
 
     if genre == "male" :
         rndm_first_name = names.get_first_name(gender = "male")
-    else :
-        rndm_first_name = names.get_first_name(gender="female")
+    elif genre == "female" :
+        rndm_first_name = names.get_first_name(gender = "female")
 
     rndm_last_name = names.get_last_name()
     rndm_name = rndm_first_name + " " + rndm_last_name
@@ -131,7 +133,7 @@ def ctrl_rndmz_profession():
         elif (stats >= Ranged_fighter).all():
             ctrl_opt_profession.append(Ranged_fighter)
         else:
-            rndm_profession = ("Grunt")
+            ctrl_opt_profession.append(Grunt)
 
     rndm_profession_code = str(random.choice(ctrl_opt_profession))
     rndm_profession = (profession_dict.get(rndm_profession_code))
@@ -149,7 +151,7 @@ class NPC :
         self.HP = random.randint(1, 20) # dé 20
         self.ac = random.randint(1, 12) # dé 12
 
-        self.genre = random.choice(opt_genre)
+        self.genre = genre
         self.nom = nom
 
         self.species = species
@@ -169,7 +171,7 @@ class NPC :
         )
 
 class Hero(NPC) :
-    def attack(self):
+    def attack(self, target):
         global hitD
         global crit
         hitD = random.randint(1, 20)
@@ -180,13 +182,37 @@ class Hero(NPC) :
             crit = False
         else :
             crit = False
-            kobold.hit()
+            target.hit()
     def hit(self):
-        pass
+        global hitD
+        global hitIndicater
+        global crit
+        global dmg
+        dmg = 0
+        if crit == True:
+            dmg = random.randint(1, 8)
+            self.HP -= dmg
+        elif 1 < hitD <= 19:
+            if hitD >= self.ac:
+                hitIndicater = True
+                dmg = random.randint(1, 6)
+                self.HP -= dmg
+        else:
+            hitIndicater = False
 
 class Kobold(NPC) :
-    def attack(self):
-        pass
+    def attack(self, target):
+        global hitD
+        global crit
+        hitD = random.randint(1, 20)
+        if hitD == 20:
+            crit = True
+            kobold.hit()
+        elif hitD == 1:
+            crit = False
+        else:
+            crit = False
+            target.hit()
     def hit(self):
         global hitD
         global hitIndicater
@@ -197,7 +223,7 @@ class Kobold(NPC) :
             dmg = random.randint(1,8)
             self.HP -= dmg
         elif 1 < hitD <= 19 :
-            if hitD >= kobold.AC :
+            if hitD >= self.ac :
                 hitIndicater = True
                 dmg = random.randint(1, 6)
                 self.HP -= dmg
@@ -227,19 +253,43 @@ cha = rndm_attribut()
 
 stats = np.array([strg, dex, con, intel, wis, cha])
 
+genre = random.choice(opt_genre)
+
 rndm_species = "Kobold"
 kobold = Kobold(strg, dex, con, intel, wis, cha, "N/A", "Kobold", rndmz_ethnicity(), ctrl_rndmz_profession())
 kobold.details()
 
 
 input("Paisez ENTER pour commencé le combats")
-print(f"{hero.nom} attack le Kobold")
-hero.attack()
-if crit == True :
-    print(f"le Kobold se prend un coup critique et perd {dmg} point de vie. Il lui reste maintenant {kobold.HP}HP")
-elif hitIndicater == True :
-    print(f"le Kobold se prend un coup et perd {dmg} point de vie. Il lui reste maintenant {kobold.HP}HP")
+while hero.HP > 0 and kobold.HP > 0:
+    print(f"{hero.nom} attack le Kobold")
+    hero.attack(kobold)
+    if crit == True :
+        print(f"le/la Kobold se prend un coup critique et perd {dmg} point de vie. Il/Elle lui reste maintenant {kobold.HP}HP")
+    elif hitIndicater == True :
+        print(f"le/la Kobold se prend un coup et perd {dmg} point de vie. Il/Elle lui reste maintenant {kobold.HP}HP")
+    else :
+        print(f"l'attaque manque le Kobold")
+
+    if kobold.HP <= 0 :
+        break
+
+    print(f"c'est maintenant le tour du Kobold"
+          f"Le Kobold attack {hero.nom}")
+    kobold.attack(hero)
+    if crit == True :
+        print(f"l'héro/ïne se prend un coup critique et perd {dmg} point de vie. Il/Elle lui reste maintenant {hero.HP}HP")
+    elif hitIndicater == True :
+        print(f"l'héro/ïne se prend un coup et perd {dmg} point de vie. Il/Elle lui reste maintenant {hero.HP}HP")
+    else :
+        print(f"l'attaque manque l'héro/ïne")
+
+    if hero.HP <= 0 :
+        break
+
+    print(f"c'est maintenant le tour de {hero.nom}")
+
+if kobold.HP <= 0 :
+    print(f"{hero.nom} vain son adversaire!")
 else :
-    print(f"l'attaque manque le Kobold")
-print(f"c'est maintenant le tour du Kobold"
-      f"Le Kobold attack {hero.nom}")
+    print(f"{hero.nom} a péri")
