@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="171a77a8-dd4c-43e6-879d-532fec87b570" name="Changes" comment="27 nov" />
+    <list default="true" id="171a77a8-dd4c-43e6-879d-532fec87b570" name="Changes" comment="27 nov">
+      <change afterPath="$PROJECT_DIR$/Exercice3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Exercice2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Exercice2.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,23 +56,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Exercice.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Exercice1_etape6.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Exercice2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.TP2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.TP3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.TP4.executor&quot;: &quot;Run&quot;,
-    &quot;Python.TrialNError.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test_zone.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mallakm/PycharmProjects/Mes projets&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Exercice.executor": "Run",
+    "Python.Exercice1_etape6.executor": "Run",
+    "Python.Exercice2.executor": "Run",
+    "Python.Exercice3.executor": "Run",
+    "Python.TP2.executor": "Run",
+    "Python.TP3.executor": "Run",
+    "Python.TP4.executor": "Run",
+    "Python.TrialNError.executor": "Run",
+    "Python.test_zone.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/mallakm/PycharmProjects/Mes projets",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mallakm\PycharmProjects\Mes projets" />
