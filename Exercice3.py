@@ -4,6 +4,7 @@
 import random
 import names
 import numpy as np
+from dataclasses import dataclass
 
 valeur = int
 opt_genre = ["male", "female"]
@@ -14,6 +15,12 @@ opt_ethnicity = ["Caucasian", "Asian"]
 ethnicity = str
 rndm_name = str
 rndm_profession = str
+opt_alignement = ["lawful good", "neutral good", "chaotic good",
+                  "lawful neutral", "true neutral", "chaotic neutral",
+                  "lawful evil", "neutral evil", "chaotic evil"]
+alignement = random.choice(opt_alignement)
+alignement = random.choice(opt_alignement)
+alignement = str
 alignement = str
 hitD = int
 dmg = int
@@ -142,12 +149,36 @@ def ctrl_rndmz_profession():
 
 def rndmz_alignement():
     global rndm_alignement
-    #rndm_alignement = random.choice
+    rndm_alignement = random.choice(opt_alignement)
+    return rndm_alignement
 
+
+@dataclass
+class Item:
+    name: str
+    qty: int
+
+class Inventory :
+    def __init__(self,):
+        self.liste_item = []
+    def add(self,):
+        label = Item(label, )
+        if item.name in self.liste_item:
+            item.qty += nbr
+        else :
+            self.liste_item.append(item.name)
+    def remove(self,):
+        if item.name in self.liste_item:
+            if item.qty <= nbr
+                self.liste_item.remove(item.name)
+            else :
+                item.qty -= nbr
+    def show(self):
+        print(self.liste_item)
 
 
 class NPC :
-    def __init__(self, strg, dex, con, intel, wis, cha, nom, species, ethnicity, profession, alignement):
+    def __init__(self, strg, dex, con, intel, wis, cha, nom, species, ethnicity, profession, alignement,):
         self.strg = strg
         self.dex = dex
         self.con = con
@@ -168,6 +199,10 @@ class NPC :
 
         self.alignement = alignement
 
+        self.backpack = Inventory()
+
+
+
     def details(self):
         print(
             f"Name: {self.nom}\n"
@@ -176,7 +211,8 @@ class NPC :
             f"Genre: {self.genre}\n"
             f"HP: {self.HP} | AC: {self.ac}\n"
             f"STR: {self.strg} DEX: {self.dex} CON: {self.con}\n"
-            f"INT: {self.intel} WIS: {self.wis} CHA: {self.cha}"
+            f"INT: {self.intel} WIS: {self.wis} CHA: {self.cha}\n"
+            f"Alignment: {self.alignement}"
         )
 
     def HPverif(self):
@@ -256,9 +292,10 @@ cha = rndm_attribut()
 
 stats = np.array([strg, dex, con, intel, wis, cha])
 
-hero = Hero(strg, dex, con, intel, wis, cha, rndmz_name(), rndmz_species(), rndmz_ethnicity(), ctrl_rndmz_profession())
+hero = Hero(strg, dex, con, intel, wis, cha, rndmz_name(), rndmz_species(), rndmz_ethnicity(), ctrl_rndmz_profession(), rndmz_alignement())
 hero.details()
 
+print("\n")
 
 strg = rndm_attribut()
 dex = rndm_attribut()
@@ -272,5 +309,69 @@ stats = np.array([strg, dex, con, intel, wis, cha])
 genre = random.choice(opt_genre)
 
 rndm_species = "Kobold"
-kobold = Kobold(strg, dex, con, intel, wis, cha, "N/A", "Kobold", rndmz_ethnicity(), ctrl_rndmz_profession())
+kobold = Kobold(strg, dex, con, intel, wis, cha, "N/A", "Kobold", rndmz_ethnicity(), ctrl_rndmz_profession(), rndmz_alignement())
 kobold.details()
+
+
+print("\n")
+
+#input("Paisez ENTER pour commencé le combats\n")
+#while True:
+#    print(f"{hero.nom} attack le Kobold")
+#    hero.attack(kobold)
+#    if crit == True :
+#        print(f"le/la Kobold se prend un coup critique et perd {dmg} point de vie. Il/Elle lui reste maintenant {kobold.HP}HP")
+#    elif hitIndicater == True :
+#        print(f"le/la Kobold se prend un coup et perd {dmg} point de vie. Il/Elle lui reste maintenant {kobold.HP}HP")
+#    else :
+#        print(f"l'attaque manque le Kobold")
+#
+#    if kobold.HPverif() == True :
+#        break
+#
+#    print(f"c'est maintenant le tour du Kobold"
+#          f"Le Kobold attack {hero.nom}")
+#    kobold.attack(hero)
+#    if crit == True :
+#        print(f"l'héro/ïne se prend un coup critique et perd {dmg} point de vie. Il/Elle lui reste maintenant {hero.HP}HP")
+#    elif hitIndicater == True :
+#        print(f"l'héro/ïne se prend un coup et perd {dmg} point de vie. Il/Elle lui reste maintenant {hero.HP}HP")
+#    else :
+#        print(f"l'attaque manque l'héro/ïne")
+#
+#    if hero.HPverif() == True :
+#        break
+#
+#    print(f"c'est maintenant le tour de {hero.nom}")
+#
+#if kobold.HP <= 0 :
+#    print(f"{hero.nom} vain son adversaire!")
+#else :
+#    print(f"{hero.nom} a péri")
+
+print("Paisez ENTER pour commencé le combats\n"
+      "Écrivez : Add [quantité de votre choix] de [item de votre choix]\n"
+      "pour ajouter un item à l'inventaire du Héro\n"
+      "Écrivez : Remove [quantité de votre choix] de [item de votre choix]\n"
+      "pour enlever un item de l'inventaire du Héro\n"
+      "Cliquez I pour voir l'inventaire")
+while True:
+    player_action = str(input("\n"))
+
+    if "Add" in player_action or "add" in player_action:
+        info = player_action.split()
+        hero.backpack.add(info[4], info[1])
+    elif "Remove" in player_action or "remove" in player_action:
+        info = player_action.split()
+        hero.backpack.remove(info[4], info[1])
+    elif player_action == "I" or player_action == "i":
+        print("code works 3")
+    elif player_action == (""):
+        print("code works 4")
+
+item = Item("stick", 3)
+
+inventory = Inventory()
+
+inventory.add(item)
+inventory.show()
