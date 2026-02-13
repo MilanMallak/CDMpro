@@ -2,7 +2,7 @@
 #Par Milan Mallak
 
 import cursorbox
-
+#
 import arcade
 WINDOW_WIDTH, WINDOW_HEIGHT = 600, 800
 WINDOW_TITLE = "Drawing"
