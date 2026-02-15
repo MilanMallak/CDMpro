@@ -35,6 +35,7 @@ class GameView(arcade.Window):
     def on_draw(self):
         self.clear()
 
+
         arcade.draw.draw_ellipse_filled(306, 679, 120, 90, aqua2, -18, 15)
         arcade.draw.draw_ellipse_outline(308, 667, 110, 65, arcade.color.BLACK, 7, -18, 20)
         arcade.draw.draw_circle_filled(291, 694, 9, silver, 0, 20)
@@ -164,7 +165,7 @@ class GameView(arcade.Window):
         arcade.draw.draw_polygon_outline([(250, 527), (231, 463), (240, 459), (265, 525)], noir2, 1)
         arcade.draw.draw_polygon_filled([(265, 525), (240, 459), (263, 460), (283, 513)], bleu)
         arcade.draw.draw_polygon_outline([(265, 525), (240, 459), (263, 460), (283, 513)], noir2, 1)
-        arcade.draw.draw_polygon_filled([(231, 463), (240, 459), (284, 390), (287, 393)], bleu)
+        arcade.draw.draw_polygon_filled([(231, 463), (240, 459), (287, 393), (284, 390)], bleu)
         arcade.draw.draw_polygon_outline([(231, 463), (240, 459), (287, 393), (284, 390)], noir2, 1)
         arcade.draw.draw_polygon_filled([(240, 459), (287, 393), (297, 406), (283, 445), (263, 460)], blanc2)
         arcade.draw.draw_polygon_outline([(240, 459), (287, 393), (297, 406), (283, 445), (263, 460)], noir2, 1)
@@ -173,13 +174,16 @@ class GameView(arcade.Window):
         arcade.draw.draw_polygon_outline([(294, 549), (295, 498), (255, 521), (276, 560)], noir2, 1)
         arcade.draw.draw_polygon_filled([(255, 521), (276, 560), (261, 557), (230, 517)], pinkish2)
         arcade.draw.draw_polygon_outline([(255, 521), (276, 560), (261, 557), (230, 517)], noir2, 1)
-        #
+
+
+        #Waist
 
 
 
         cursorbox.draw_information()
 
-    def on_mouse_motion(self, x: float, y, shit1, shi2):
+
+    def on_mouse_motion(self, x: float, y, var1, var2):
         cursorbox.mouseX = x
         cursorbox.mouseY = y
 
