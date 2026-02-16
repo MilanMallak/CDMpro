@@ -23,6 +23,9 @@ silver2 = (72, 61, 67)
 pinkish = (223, 184, 202)
 pinkish2 = (222, 143, 162)
 pinkish3 = (79, 40, 59)
+jaune = (245, 204, 86)
+jaune2 = (190, 170, 55)
+
 
 class GameView(arcade.Window):
     def __init__(self):
@@ -30,17 +33,21 @@ class GameView(arcade.Window):
         super().__init__(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE)
 
     def setup(self):
-        arcade.set_background_color(arcade.color.BLACK_BEAN)
+        arcade.set_background_color(arcade.color.GRAY)
 
     def on_draw(self):
         self.clear()
 
+        arcade.draw.draw_lrbt_rectangle_filled(0, SCREENWIDTH, 0, 90, arcade.color.DARK_GRAY)
+
+        #Head and Hat
 
         arcade.draw.draw_ellipse_filled(306, 679, 120, 90, aqua2, -18, 15)
         arcade.draw.draw_ellipse_outline(308, 667, 110, 65, arcade.color.BLACK, 7, -18, 20)
         arcade.draw.draw_circle_filled(291, 694, 9, silver, 0, 20)
         arcade.draw.draw_ellipse_filled(289, 695, 18, 14, silver2, -51, 20)
 
+        arcade.draw.draw_triangle_filled(351, 661, 367, 649, 340, 611, noir)
         arcade.draw.draw_triangle_filled(278, 668, 265, 567, 254, 623, noir2)
         arcade.draw.draw_triangle_filled(258, 568, 265, 567, 254, 623, noir2)
         arcade.draw.draw_triangle_filled(254, 623, 261, 578, 250, 591, noir2)
@@ -124,6 +131,11 @@ class GameView(arcade.Window):
 
 
         #Left Arm
+        arcade.draw.draw_polygon_filled([(379, 450), (399, 429), (366, 413), (333, 419)], rouge2)
+        arcade.draw.draw_polygon_filled([(391, 504), (397, 476), (404, 451), (407, 442), (399, 429), (368, 415), (368, 424), (372, 432), (378, 439), (384, 445), (378, 452), (364, 487)], rouge)
+        arcade.draw.draw_polygon_outline([(391, 504), (397, 476), (404, 451), (407, 442), (399, 429), (366, 413), (333, 419), (350, 432), (379, 450), (364, 487)], noir2, 1)
+        arcade.draw,draw_line(378, 452, 384, 445, noir2, 1)
+
         arcade.draw.draw_arc_filled(385, 497, 44, 12, pinkish, 0, 360, 142, 10)
         arcade.draw.draw_arc_outline(385, 497, 44, 12, noir2, 0, 180, 1, 142, 10)
         arcade.draw.draw_arc_filled(378, 502, 51, 85, pinkish, 0, 180, -22, 20)
@@ -157,6 +169,7 @@ class GameView(arcade.Window):
         arcade.draw.draw_polygon_filled([(311, 507), (362, 505), (348, 433), (319, 434)], pinkish2)
         arcade.draw.draw_polygon_outline([(311, 507), (362, 505), (348, 433), (319, 434)], noir2, 1)
 
+
         #Right Arm
         arcade.draw.draw_polygon_filled([(230, 517), (255, 521), (295, 498), (261, 497)], pinkish3)
         arcade.draw.draw_polygon_outline([(230, 517), (255, 521), (295, 498), (261, 497)], noir2, 1)
@@ -176,8 +189,88 @@ class GameView(arcade.Window):
         arcade.draw.draw_polygon_outline([(255, 521), (276, 560), (261, 557), (230, 517)], noir2, 1)
 
 
-        #Waist
+        #Left Leg
+        arcade.draw.draw_polygon_filled([(364, 303), (360, 297), (359, 291), (358, 280), (358, 265),
+                                         (350, 259), (341, 259), (333, 261), (328, 263), (326, 269), (327, 286),(331, 299), (332, 320), (334, 327), (350, 339)], noir2)
+        arcade.draw.draw_polygon_outline([(364, 303), (360, 297), (359, 291), (358, 280), (358, 265),
+                                          (350, 259), (341, 259), (333, 261), (328, 263), (326, 269), (327, 286),(331, 299), (332, 320), (334, 327), (350, 339)], arcade.color.BLACK, 1)
+        arcade.draw.draw_polygon_filled([(364, 303), (360, 297), (359, 291), (358, 280), (358, 265), (250, 262), (341, 262), (335, 265), (339, 300), (341, 307), (345, 309), (356, 313)], noir)
 
+        arcade.draw.draw_polygon_filled([(334, 341), (342, 327), (364, 320), (388, 318),
+                                         (372, 323), (367, 329), (366, 344), (370, 358), (379, 366), (387, 368),
+                                         (400, 359), (397, 369), (390, 374), (355, 374)], aqua)
+        arcade.draw.draw_polygon_outline([(334, 341), (342, 327), (364, 320), (388, 318),
+                                         (372, 323), (367, 329), (366, 344), (370, 358), (379, 366), (387, 368),
+                                         (400, 359), (397, 369), (390, 374), (355, 374)], noir2, 1)
+        arcade.draw.draw_line_strip([(363, 321), (359, 326), (358, 333), (358, 343), (361, 353), (365, 361), (371, 367), (375, 371), (383, 374)], noir2, 1)
+        arcade.draw.draw_polygon_filled([(372, 378), (362, 362), (355, 348), (341, 341), (350, 390)], aqua2)
+
+        arcade.draw.draw_polygon_filled([(387, 368), (399, 363), (404, 359), (409, 352), (412, 345), (414, 335), (412, 324), (410, 313), (405, 304), (398, 298), (388, 296), (370, 296), (361, 300),
+                                         (353, 305), (348, 312), (348, 317), (351, 323), (361, 323), (368, 322)], rouge)
+        arcade.draw.draw_polygon_outline([(387, 368), (399, 363), (404, 359), (409, 352), (412, 345), (414, 335), (412, 324), (410, 313), (405, 304),(398, 298), (388, 296), (370, 296), (361, 300),
+             (353, 305), (348, 312), (348, 317), (351, 323), (361, 323), (368, 322)], noir2, 1)
+        arcade.draw.draw_ellipse_filled(384, 343, 37, 51, rouge, 17, 20)
+        arcade.draw.draw_arc_outline(384, 343, 37, 51, noir2, 73, 280,3, 17, 20)
+        arcade.draw.draw_arc_outline(390, 327, 6, 24, noir2, 90, 270, 2, 0, 10)
+
+
+        #Megaphone
+        arcade.draw.draw_polygon_filled([(194, 364) ,(233, 291), (318, 380), (304, 394)], jaune2)
+        arcade.draw.draw_polygon_filled([(194, 364), (304, 394), (300, 388), (200, 361)], jaune)
+        arcade.draw.draw_polygon_outline([(194, 364), (233, 291), (318, 380), (304, 394)], noir2, 1)
+        arcade.draw.draw_ellipse_filled(213, 328, 81, 30, jaune2, 60, 30)
+        arcade.draw.draw_ellipse_outline(213, 328, 81, 30, noir2, 1, 60, 30)
+
+
+        # Waist
+        arcade.draw.draw_polygon_filled(
+            [(293, 430), (303, 429), (301, 408), (296, 404), (291, 399), (290, 395), (288, 387), (277, 389), (278, 398), (280, 403), (284, 406), (290, 410)], aqua2)
+        arcade.draw.draw_polygon_outline([(293, 430), (303, 429), (301, 408), (296, 404), (291, 399), (290, 395), (288, 387), (277, 389), (278, 398), (280, 403), (284, 406), (290, 410)], noir2, 1)
+
+        arcade.draw.draw_polygon_filled([(300, 388), (305, 363), (307, 343), (312, 338), (330, 384)], aqua2)
+        arcade.draw.draw_polygon_outline([(300, 388), (305, 363), (307, 343), (312, 338), (330, 384)], noir2, 1)
+
+        arcade.draw.draw_polygon_filled([(303, 429), (357, 420), (369, 416), (368, 401), (377, 392), (375, 375), (362, 371), (356, 366), (352, 359), (344, 337), (312, 338), (313, 358), (311, 369),
+                                         (304, 376), (295, 382), (288, 387), (290, 395), (291, 399), (296, 404), (301, 408)], aqua)
+        arcade.draw.draw_polygon_outline([(303, 429), (357, 420), (369, 416), (368, 401), (377, 392), (375, 375), (362, 371), (356, 366), (352, 359), (344, 337), (312, 338), (313, 358), (311, 369),
+                                         (304, 376), (295, 382), (288, 387), (290, 395), (291, 399), (296, 404), (301, 408)], noir2, 1)
+        arcade.draw.draw_line(346, 421, 330, 337, noir2, 2)
+
+
+        #Right Leg
+        arcade.draw.draw_polygon_filled([(306, 302), (312, 255), (300, 242), (295, 290)], blanc)
+        arcade.draw.draw_polygon_outline([(306, 302), (312, 255), (300, 242), (295, 290)], noir2, 1)
+        arcade.draw.draw_polygon_filled([(300, 242), (295, 290), (269, 294), (277, 248), (300, 242)], bleu)
+        arcade.draw.draw_polygon_outline([(300, 242), (295, 290), (269, 294), (277, 248), (300, 242)], noir2, 1)
+
+        arcade.draw.draw_polygon_filled([(278, 373), (294, 295), (308, 310), (297, 359)], aqua)
+        arcade.draw.draw_polygon_outline([(278, 373), (294, 295), (308, 310), (297, 359)], noir2, 1)
+        arcade.draw.draw_polygon_filled([(278, 373), (294, 295), (265, 301), (257, 339), (267, 346)], aqua2)
+        arcade.draw.draw_polygon_outline([(278, 373), (294, 295), (265, 301), (257, 339), (267, 346)], noir2, 1)
+
+        arcade.draw.draw_polygon_filled([(308, 310), (311, 311), (313, 301), (295, 282), (294, 295)], aqua)
+        arcade.draw.draw_polygon_outline([(308, 310), (311, 311), (313, 301), (295, 282), (294, 295)], noir2, 1)
+        arcade.draw.draw_polygon_filled([(294, 295), (295, 282), (263, 289), (260, 298), (265, 301)], aqua2)
+        arcade.draw.draw_polygon_outline([(294, 295), (295, 282), (263, 289), (260, 298), (265, 301)], noir2, 1)
+
+        arcade.draw.draw_polygon_filled([(300, 242), (312, 255), (303, 211)], noir)
+        arcade.draw.draw_polygon_outline([(300, 242), (312, 255), (303, 211)], arcade.color.BLACK)
+        arcade.draw.draw_polygon_filled([(312, 255), (323, 222), (336, 83), (330, 91), (303, 211)], noir2)
+        arcade.draw.draw_polygon_outline([(312, 255), (323, 222), (336, 83), (330, 91), (303, 211)], arcade.color.BLACK, 1)
+        arcade.draw.draw_line(323, 222, 303, 211, arcade.color.BLACK, 1)
+        arcade.draw.draw_polygon_filled([(300, 242), (303, 211), (277, 248)], noir2)
+        arcade.draw.draw_polygon_outline([(300, 242), (303, 211), (277, 248)], arcade.color.BLACK, 1)
+        arcade.draw.draw_polygon_filled([(277, 248), (303, 211), (330, 91), (338, 83), (371, 58), (322, 75), (305, 61), (314, 91), (275, 210)], noir)
+        arcade.draw.draw_polygon_outline([(277, 248), (303, 211), (330, 91), (338, 83), (371, 58), (322, 75), (305, 61), (314, 91), (275, 210)], arcade.color.BLACK, 1)
+        arcade.draw.draw_line(303, 211, 275, 210, arcade.color.BLACK, 1)
+        arcade.draw.draw_line(330, 91, 314, 91, arcade.color.BLACK, 1)
+        arcade.draw.draw_line(330, 91, 322, 75, arcade.color.BLACK, 1)
+        arcade.draw.draw_polygon_filled([(305, 61), (322, 75), (371, 58), (373, 45), (333, 46)], noir2)
+        arcade.draw.draw_polygon_outline([(305, 61), (322, 75), (371, 58), (373, 45), (333, 46)], arcade.color.BLACK, 1)
+        arcade.draw.draw_line(322, 75, 337, 60, arcade.color.BLACK, 1)
+        arcade.draw.draw_line(337, 60, 349, 65, arcade.color.BLACK, 1)
+        arcade.draw.draw_line(337, 60, 333, 46, arcade.color.BLACK, 1)
+        arcade.draw.draw_line(337, 60, 372, 51, arcade.color.BLACK, 1)
 
 
         cursorbox.draw_information()
