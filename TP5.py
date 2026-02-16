@@ -138,12 +138,12 @@ class GameView(arcade.Window):
         arcade.draw.draw_polygon_filled([(379, 450), (399, 429), (366, 413), (333, 419)], rouge2)
         arcade.draw.draw_polygon_filled([(391, 504), (397, 476), (404, 451), (407, 442), (399, 429), (368, 415), (368, 424), (372, 432), (378, 439), (384, 445), (378, 452), (364, 487)], rouge)
         arcade.draw.draw_polygon_outline([(391, 504), (397, 476), (404, 451), (407, 442), (399, 429), (366, 413), (333, 419), (350, 432), (379, 450), (364, 487)], noir2, 1)
-        arcade.draw,draw_line(378, 452, 384, 445, noir2, 1)
+        arcade.draw.draw_line(378, 452, 384, 445, noir2, 1)
 
         arcade.draw.draw_arc_filled(385, 497, 44, 12, pinkish, 0, 360, 142, 10)
-        arcade.draw.draw_arc_outline(385, 497, 44, 12, noir2, 0, 180, 1, 142, 10)
+        arcade.draw.draw_arc_outline(385, 497, 44, 12, noir2, 0, 180, 2, 142, 10)
         arcade.draw.draw_arc_filled(378, 502, 51, 85, pinkish, 0, 180, -22, 20)
-        arcade.draw.draw_arc_outline(378, 502, 51, 85, noir2, 0, 180, 1, -22, 20)
+        arcade.draw.draw_arc_outline(378, 502, 51, 85, noir2, 0, 180, 2, -22, 20)
         arcade.draw.draw_triangle_filled(397, 510, 371, 488, 374, 519, pinkish)
 
 
