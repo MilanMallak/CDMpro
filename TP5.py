@@ -46,9 +46,17 @@ class GameView(arcade.Window):
         arcade.draw.draw_lrbt_rectangle_filled(0, SCREENWIDTH, 0, 90, arcade.color.DARK_GRAY)
 
         # Text
-        arcade.draw_text("e", 70, 750, arcade.color.WHITE, 30, None, "left", "No Continue")
+        e_sprite = arcade.create_text_sprite("e", arcade.color.WHITE, 30, None, "left", "No Continue")
+        e_sprite.scale_x = -1
+        e_sprite.position = (80, 766)
+        arcade.draw.draw_sprite(e_sprite)
+
         arcade.draw_text("n", 90, 750, arcade.color.GREEN, 30, None, "left", "No Continue")
-        arcade.draw_text("a", 110, 750, arcade.color.RUBY, 30, None, "left", "No Continue")
+        arcade.draw_text("a", 110, 750, rouge, 30, None, "left", "No Continue")
+
+        arcade.draw_text("dream", 10, 690, arcade.color.BABY_BLUE, 50, None, "left", "No Continue")
+
+        arcade.draw_text("bbq", 57, 643, arcade.color.BUD_GREEN, 40, None, "left", "No Continue")
 
 
         #Head and Hat
