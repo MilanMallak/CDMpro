@@ -11,6 +11,7 @@ import arcade
 WINDOW_WIDTH, WINDOW_HEIGHT = 600, 800
 WINDOW_TITLE = "Drawing"
 
+#Color Palette
 rouge = (224, 54, 54)
 rouge2 = (161, 31, 31)
 rouge3 = (211, 66, 81)
