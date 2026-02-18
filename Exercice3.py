@@ -18,12 +18,9 @@ rndm_profession = str
 opt_alignement = ["lawful good", "neutral good", "chaotic good",
                   "lawful neutral", "true neutral", "chaotic neutral",
                   "lawful evil", "neutral evil", "chaotic evil"]
-alignement = random.choice(opt_alignement)
-alignement = random.choice(opt_alignement)
-alignement = str
-alignement = str
 hitD = int
 dmg = int
+
 
 
 #                                                   #    strg, dex, con, intel, wis, cha
@@ -159,22 +156,32 @@ class Item:
     qty: int
 
 class Inventory :
-    def __init__(self,):
+    def __init__(self):
         self.liste_item = []
-    def add(self,):
-        label = Item(label, )
-        if item.name in self.liste_item:
+    def find_item(self, label):
+        for item in self.liste_item:
+            if item.name == label:
+                return item
+    def add(self, label, nbr):
+        item = self.find_item(label)
+        if item:
             item.qty += nbr
         else :
-            self.liste_item.append(item.name)
-    def remove(self,):
-        if item.name in self.liste_item:
-            if item.qty <= nbr
-                self.liste_item.remove(item.name)
+            self.liste_item.append(Item(label, nbr))
+    def remove(self, label, nbr):
+        item = self.find_item(label)
+        if item:
+            if item.qty == nbr :
+                self.liste_item.remove(item)
+            elif item.qty < nbr :
+                print(f"Vous n'avez pas assez de {label} pour faire cette action")
             else :
                 item.qty -= nbr
+        else:
+            print(f"Il n'y a aucun {label} dans l'inentaire")
     def show(self):
-        print(self.liste_item)
+        for item in self.liste_item:
+            print(f"{item.name} : {item.qty}")
 
 
 class NPC :
@@ -201,8 +208,6 @@ class NPC :
 
         self.backpack = Inventory()
 
-
-
     def details(self):
         print(
             f"Name: {self.nom}\n"
@@ -221,6 +226,7 @@ class NPC :
         if self.HP <= 0 :
             dead = True
         return dead
+
 
 class Hero(NPC) :
     def attack(self, target):
@@ -251,6 +257,7 @@ class Hero(NPC) :
                 self.HP -= dmg
         else:
             hitIndicater = False
+
 
 class Kobold(NPC) :
     def attack(self, target):
@@ -309,50 +316,16 @@ stats = np.array([strg, dex, con, intel, wis, cha])
 genre = random.choice(opt_genre)
 
 rndm_species = "Kobold"
-kobold = Kobold(strg, dex, con, intel, wis, cha, "N/A", "Kobold", rndmz_ethnicity(), ctrl_rndmz_profession(), rndmz_alignement())
+kobold = Kobold(strg, dex, con, intel, wis, cha, "N/A", "Kobold", rndmz_ethnicity(), ctrl_rndmz_profession(), "lawful evil")
 kobold.details()
 
 
 print("\n")
 
-#input("Paisez ENTER pour commencé le combats\n")
-#while True:
-#    print(f"{hero.nom} attack le Kobold")
-#    hero.attack(kobold)
-#    if crit == True :
-#        print(f"le/la Kobold se prend un coup critique et perd {dmg} point de vie. Il/Elle lui reste maintenant {kobold.HP}HP")
-#    elif hitIndicater == True :
-#        print(f"le/la Kobold se prend un coup et perd {dmg} point de vie. Il/Elle lui reste maintenant {kobold.HP}HP")
-#    else :
-#        print(f"l'attaque manque le Kobold")
-#
-#    if kobold.HPverif() == True :
-#        break
-#
-#    print(f"c'est maintenant le tour du Kobold"
-#          f"Le Kobold attack {hero.nom}")
-#    kobold.attack(hero)
-#    if crit == True :
-#        print(f"l'héro/ïne se prend un coup critique et perd {dmg} point de vie. Il/Elle lui reste maintenant {hero.HP}HP")
-#    elif hitIndicater == True :
-#        print(f"l'héro/ïne se prend un coup et perd {dmg} point de vie. Il/Elle lui reste maintenant {hero.HP}HP")
-#    else :
-#        print(f"l'attaque manque l'héro/ïne")
-#
-#    if hero.HPverif() == True :
-#        break
-#
-#    print(f"c'est maintenant le tour de {hero.nom}")
-#
-#if kobold.HP <= 0 :
-#    print(f"{hero.nom} vain son adversaire!")
-#else :
-#    print(f"{hero.nom} a péri")
-
 print("Paisez ENTER pour commencé le combats\n"
-      "Écrivez : Add [quantité de votre choix] de [item de votre choix]\n"
+      "Écrivez : Add [quantité de votre choix] [item de votre choix]\n"
       "pour ajouter un item à l'inventaire du Héro\n"
-      "Écrivez : Remove [quantité de votre choix] de [item de votre choix]\n"
+      "Écrivez : Remove [quantité de votre choix] [item de votre choix]\n"
       "pour enlever un item de l'inventaire du Héro\n"
       "Cliquez I pour voir l'inventaire")
 while True:
@@ -360,18 +333,48 @@ while True:
 
     if "Add" in player_action or "add" in player_action:
         info = player_action.split()
-        hero.backpack.add(info[4], info[1])
+        info[1] = int(info[1])
+        hero.backpack.add(info[2], info[1])
     elif "Remove" in player_action or "remove" in player_action:
         info = player_action.split()
-        hero.backpack.remove(info[4], info[1])
+        info[1] = int(info[1])
+        hero.backpack.remove(info[2], info[1])
     elif player_action == "I" or player_action == "i":
-        print("code works 3")
+        hero.backpack.show()
     elif player_action == (""):
-        print("code works 4")
+        while True:
+            print(f"{hero.nom} attack le Kobold")
+            hero.attack(kobold)
+            if crit == True:
+                print(
+                    f"le/la Kobold se prend un coup critique et perd {dmg} point de vie. Il/Elle lui reste maintenant {kobold.HP}HP")
+            elif hitIndicater == True:
+                print(
+                    f"le/la Kobold se prend un coup et perd {dmg} point de vie. Il/Elle lui reste maintenant {kobold.HP}HP")
+            else:
+                print(f"l'attaque manque le Kobold")
 
-item = Item("stick", 3)
+            if kobold.HPverif() == True:
+                break
 
-inventory = Inventory()
+            print(f"c'est maintenant le tour du Kobold"
+                  f"Le Kobold attack {hero.nom}")
+            kobold.attack(hero)
+            if crit == True:
+                print(
+                    f"l'héro/ïne se prend un coup critique et perd {dmg} point de vie. Il/Elle lui reste maintenant {hero.HP}HP")
+            elif hitIndicater == True:
+                print(
+                    f"l'héro/ïne se prend un coup et perd {dmg} point de vie. Il/Elle lui reste maintenant {hero.HP}HP")
+            else:
+                print(f"l'attaque manque l'héro/ïne")
 
-inventory.add(item)
-inventory.show()
+            if hero.HPverif() == True:
+                break
+
+            print(f"c'est maintenant le tour de {hero.nom}")
+
+        if kobold.HP <= 0:
+            print(f"{hero.nom} vain son adversaire!")
+        else:
+            print(f"{hero.nom} a péri")
