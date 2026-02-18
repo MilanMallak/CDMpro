@@ -58,6 +58,9 @@ class GameView(arcade.Window):
 
         arcade.draw_text("bbq", 57, 643, arcade.color.BUD_GREEN, 40, None, "left", "No Continue")
 
+        arcade.draw.draw_point(5, 710, arcade.color.WHITE, 8)
+        arcade.draw.draw_point(196, 710, arcade.color.WHITE, 8)
+
 
         #Head and Hat
 
