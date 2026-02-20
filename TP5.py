@@ -1,9 +1,7 @@
-# exerice de classe 3
+#TP5
 #Par Milan Mallak
 
 from turtledemo.nim import SCREENWIDTH
-
-from arcade import draw_line
 
 import cursorbox
 
